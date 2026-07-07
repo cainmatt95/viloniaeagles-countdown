@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0b0202;
+    color: #ffffff;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Dark, smoky background aesthetic */
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(150,10,10,0.15) 0%, rgba(0,0,0,0.85) 100%);
+    z-index: -1;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    max-width: 900px;
+    width: 100%;
+}
+
+/* #Relentless Pursuit Title */
+.brand-title {
+    font-size: 4rem;
+    font-style: italic;
+    color: #ffffff;
+    text-shadow: 3px 3px 0px #990000, 0 0 20px rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+}
+
+/* Glowing Red Box Panel */
+.countdown-panel {
+    border: 3px solid #ff1a1a;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 25px;
+    box-shadow: 0 0 25px #ff1a1a, inset 0 0 15px #990000;
+    margin-bottom: 30px;
+}
+
+.panel-header {
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    color: #cccccc;
+    margin-bottom: 15px;
+}
+
+/* Timer Layout */
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.time-block span {
+    font-size: 4.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 15px #ff1a1a, 0 0 30px #ff1a1a;
+    line-height: 1;
+}
+
+.label {
+    font-size: 0.8rem;
+    color: #aaaaaa;
+    margin-top: 8px;
+    letter-spacing: 2px;
+}
+
+.divider {
+    font-size: 3.5rem;
+    color: rgba(255, 255, 255, 0.2);
+    align-self: flex-start;
+    margin-top: -5px;
+}
+
+/* Bottom Matchup Texts */
+.matchup {
+    font-size: 2.5rem;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.vilonia { color: #ffffff; }
+.vs { color: #aaaaaa; font-size: 1.8rem; margin: 0 10px; }
+.opponent { color: #ffffff; }
+
+.game-time {
+    font-size: 1.8rem;
+    color: #ff1a1a;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 26, 26, 0.5);
+}
+
+.divider-red {
+    color: #ffffff;
+    margin: 0 10px;
+}
+
+/* Responsive adjustments for phones */
+@media (max-width: 600px) {
+    .brand-title { font-size: 2.5rem; }
+    .time-block span { font-size: 2.5rem; }
+    .divider { font-size: 2rem; }
+    .matchup { font-size: 1.6rem; }
+    .game-time { font-size: 1.3rem; }
+    .time-block { min-width: 50px; }
+}
+
