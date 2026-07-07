@@ -5,9 +5,9 @@
 }
 
 body {
-    background-color: #0b0202;
+    background-color: #050000;
     color: #ffffff;
-    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-family: 'Teko', sans-serif; /* Tall, clean sports font for numbers */
     letter-spacing: 1px;
     display: flex;
     justify-content: center;
@@ -17,15 +17,29 @@ body {
     position: relative;
 }
 
-/* Dark, smoky background aesthetic */
+/* Atmospheric smoky red background vignette */
 .background-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(150,10,10,0.15) 0%, rgba(0,0,0,0.85) 100%);
+    background: radial-gradient(circle, rgba(180,10,10,0.2) 0%, rgba(0,0,0,0.95) 100%);
+    z-index: -2;
+}
+
+/* Subtle, random lightning flash effect */
+.lightning-flash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    opacity: 0;
     z-index: -1;
+    animation: lightning 8s infinite linear;
+    pointer-events: none;
 }
 
 .container {
@@ -35,84 +49,120 @@ body {
     width: 100%;
 }
 
-/* #Relentless Pursuit Title */
-.brand-title {
-    font-size: 4rem;
-    font-style: italic;
-    color: #ffffff;
-    text-shadow: 3px 3px 0px #990000, 0 0 20px rgba(255,255,255,0.4);
-    margin-bottom: 20px;
+/* Logo placement styling */
+.logo-container {
+    margin-bottom: -10px;
+}
+.eagle-logo {
+    max-width: 180px;
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.6));
 }
 
-/* Glowing Red Box Panel */
+/* #Relentless Pursuit Gritty Brush Text */
+.brand-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 4.5rem;
+    color: #ffffff;
+    text-shadow: 4px 4px 0px #7a0000, 0 0 30px rgba(255, 0, 0, 0.5);
+    margin-bottom: 15px;
+    transform: rotate(-2deg); /* Gives it that aggressive graphic design tilt */
+}
+
+/* Elaborate neon hex-style panel box */
 .countdown-panel {
     border: 3px solid #ff1a1a;
-    border-radius: 15px;
-    background: rgba(0, 0, 0, 0.85);
-    padding: 25px;
-    box-shadow: 0 0 25px #ff1a1a, inset 0 0 15px #990000;
-    margin-bottom: 30px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(15, 2, 2, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+    padding: 30px 20px;
+    box-shadow: 0 0 30px #ff1a1a, inset 0 0 20px rgba(255, 26, 26, 0.3);
+    margin-bottom: 35px;
+    position: relative;
+}
+
+/* Decorative corner brackets to make it look "elaborate" */
+.countdown-panel::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: -8px; width: 20px; height: 20px;
+    border-top: 4px solid #ffffff; border-left: 4px solid #ffffff;
 }
 
 .panel-header {
-    font-size: 1.2rem;
-    letter-spacing: 4px;
-    color: #cccccc;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #e0e0e0;
     margin-bottom: 15px;
+    text-shadow: 0 0 8px rgba(255,255,255,0.3);
 }
 
-/* Timer Layout */
+/* Timer Display Layout */
 .timer {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .time-block {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 80px;
+    min-width: 100px;
 }
 
 .time-block span {
-    font-size: 4.5rem;
+    font-size: 6rem; /* Huge, commanding countdown numbers */
+    font-weight: 700;
     color: #ffffff;
-    text-shadow: 0 0 15px #ff1a1a, 0 0 30px #ff1a1a;
-    line-height: 1;
+    text-shadow: 0 0 15px #ff1a1a, 0 0 30px #ff0000;
+    line-height: 0.9;
 }
 
 .label {
-    font-size: 0.8rem;
-    color: #aaaaaa;
-    margin-top: 8px;
-    letter-spacing: 2px;
+    font-size: 1.1rem;
+    color: #b5b5b5;
+    margin-top: 5px;
+    letter-spacing: 3px;
 }
 
 .divider {
-    font-size: 3.5rem;
-    color: rgba(255, 255, 255, 0.2);
-    align-self: flex-start;
-    margin-top: -5px;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.15);
+    font-family: Arial, sans-serif;
+    margin-bottom: 25px;
 }
 
-/* Bottom Matchup Texts */
+/* Matchup Text styling */
 .matchup {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
+    font-weight: 700;
     font-style: italic;
-    margin-bottom: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
 }
 
-.vilonia { color: #ffffff; }
-.vs { color: #aaaaaa; font-size: 1.8rem; margin: 0 10px; }
-.opponent { color: #ffffff; }
+.vilonia {
+    color: #ffffff;
+    text-shadow: 2px 2px 0px #555;
+}
+.vs {
+    color: #e61a1a;
+    font-size: 2.2rem;
+    margin: 0 15px;
+    font-family: 'Permanent Marker', cursive;
+}
+.opponent {
+    color: #ffffff;
+}
 
 .game-time {
-    font-size: 1.8rem;
-    color: #ff1a1a;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(255, 26, 26, 0.5);
+    font-size: 2.2rem;
+    color: #ff2b2b;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 43, 43, 0.6);
 }
 
 .divider-red {
@@ -120,13 +170,25 @@ body {
     margin: 0 10px;
 }
 
-/* Responsive adjustments for phones */
-@media (max-width: 600px) {
-    .brand-title { font-size: 2.5rem; }
-    .time-block span { font-size: 2.5rem; }
-    .divider { font-size: 2rem; }
-    .matchup { font-size: 1.6rem; }
-    .game-time { font-size: 1.3rem; }
-    .time-block { min-width: 50px; }
+/* Lightning strike keyframes */
+@keyframes lightning {
+    0%, 95%, 100% { opacity: 0; }
+    96% { opacity: 0.2; }
+    97% { opacity: 0.05; }
+    98% { opacity: 0.4; }
+    99% { opacity: 0; }
+}
+
+/* Clean up layouts for smartphone sizing */
+@media (max-width: 650px) {
+    .brand-title { font-size: 2.8rem; }
+    .time-block span { font-size: 3.5rem; }
+    .label { font-size: 0.8rem; }
+    .divider { font-size: 2.5rem; margin-bottom: 12px; }
+    .matchup { font-size: 2rem; }
+    .vs { font-size: 1.5rem; }
+    .game-time { font-size: 1.5rem; }
+    .time-block { min-width: 60px; }
+    .eagle-logo { max-width: 120px; }
 }
 
