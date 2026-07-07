@@ -7,188 +7,196 @@
 body {
     background-color: #050000;
     color: #ffffff;
-    font-family: 'Teko', sans-serif; /* Tall, clean sports font for numbers */
+    font-family: 'Teko', sans-serif;
     letter-spacing: 1px;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
 }
 
-/* Atmospheric smoky red background vignette */
+/* Base Red/Black Vignette */
 .background-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(180,10,10,0.2) 0%, rgba(0,0,0,0.95) 100%);
-    z-index: -2;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(140,5,5,0.25) 0%, rgba(0,0,0,0.98) 100%);
+    z-index: -4;
 }
 
-/* Subtle, random lightning flash effect */
+/* Animated Smoke / Fog effect */
+.smoke-layer {
+    position: absolute;
+    top: 0; left: 0; width: 200%; height: 100%;
+    background: radial-gradient(rgba(255,0,0,0.04), transparent 60%), 
+                radial-gradient(rgba(0,0,0,0.4), transparent 70%);
+    filter: blur(40px);
+    opacity: 0.5;
+    z-index: -3;
+    animation: driftSmoke 25s infinite linear;
+}
+
+/* Erratic Lightning Strikes */
 .lightning-flash {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: #ffffff;
     opacity: 0;
-    z-index: -1;
-    animation: lightning 8s infinite linear;
+    z-index: -2;
+    animation: lightningStrike 7s infinite ease-in-out;
     pointer-events: none;
 }
+
+/* Floating Ember Particle Space */
+.ember-container {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.ember {
+    position: absolute;
+    bottom: -10px;
+    background: radial-gradient(#ffdd44, #ff3300);
+    border-radius: 50%;
+    opacity: 0.7;
+    box-shadow: 0 0 10px #ff3300, 0 0 20px #ff0000;
+    animation: floatUpward 8s infinite linear;
+}
+
+/* Varied sizes and positions for realistic embers */
+.ember:nth-child(1) { left: 10%; width: 4px; height: 4px; animation-delay: 0s; animation-duration: 7s; }
+.ember:nth-child(2) { left: 25%; width: 6px; height: 6px; animation-delay: 2s; animation-duration: 9s; }
+.ember:nth-child(3) { left: 40%; width: 3px; height: 3px; animation-delay: 4s; animation-duration: 6s; }
+.ember:nth-child(4) { left: 55%; width: 5px; height: 5px; animation-delay: 1s; animation-duration: 8s; }
+.ember:nth-child(5) { left: 70%; width: 7px; height: 7px; animation-delay: 5s; animation-duration: 10s; }
+.ember:nth-child(6) { left: 85%; width: 4px; height: 4px; animation-delay: 3s; animation-duration: 7.5s; }
+.ember:nth-child(7) { left: 15%; width: 5px; height: 5px; animation-delay: 6s; animation-duration: 8.5s; }
+.ember:nth-child(8) { left: 65%; width: 3px; height: 3px; animation-delay: 2.5s; animation-duration: 6.5s; }
+.ember:nth-child(9) { left: 90%; width: 6px; height: 6px; animation-delay: 4.5s; animation-duration: 9.5s; }
 
 .container {
     text-align: center;
     padding: 20px;
     max-width: 900px;
     width: 100%;
+    user-select: none;
 }
 
-/* Logo placement styling */
-.logo-container {
-    margin-bottom: -10px;
-}
+.logo-container { margin-bottom: -10px; }
 .eagle-logo {
     max-width: 180px;
     height: auto;
     filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.6));
 }
 
-/* #Relentless Pursuit Gritty Brush Text */
 .brand-title {
     font-family: 'Permanent Marker', cursive;
     font-size: 4.5rem;
     color: #ffffff;
     text-shadow: 4px 4px 0px #7a0000, 0 0 30px rgba(255, 0, 0, 0.5);
     margin-bottom: 15px;
-    transform: rotate(-2deg); /* Gives it that aggressive graphic design tilt */
+    transform: rotate(-2deg);
 }
 
-/* Elaborate neon hex-style panel box */
+/* Stadium Panel Structure */
 .countdown-panel {
     border: 3px solid #ff1a1a;
     border-radius: 12px;
     background: linear-gradient(135deg, rgba(15, 2, 2, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
     padding: 30px 20px;
-    box-shadow: 0 0 30px #ff1a1a, inset 0 0 20px rgba(255, 26, 26, 0.3);
+    box-shadow: 0 0 35px #ff1a1a, inset 0 0 20px rgba(255, 26, 26, 0.3);
     margin-bottom: 35px;
     position: relative;
 }
 
-/* Decorative corner brackets to make it look "elaborate" */
 .countdown-panel::before {
-    content: '';
-    position: absolute;
+    content: ''; position: absolute;
     top: -8px; left: -8px; width: 20px; height: 20px;
     border-top: 4px solid #ffffff; border-left: 4px solid #ffffff;
 }
 
 .panel-header {
     font-size: 1.6rem;
-    font-weight: 700;
     letter-spacing: 5px;
     color: #e0e0e0;
     margin-bottom: 15px;
-    text-shadow: 0 0 8px rgba(255,255,255,0.3);
 }
 
-/* Timer Display Layout */
-.timer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.time-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 100px;
-}
-
+.timer { display: flex; justify-content: center; align-items: center; gap: 10px; }
+.time-block { display: flex; flex-direction: column; align-items: center; min-width: 100px; }
 .time-block span {
-    font-size: 6rem; /* Huge, commanding countdown numbers */
+    font-size: 6rem;
     font-weight: 700;
     color: #ffffff;
     text-shadow: 0 0 15px #ff1a1a, 0 0 30px #ff0000;
     line-height: 0.9;
 }
 
-.label {
-    font-size: 1.1rem;
-    color: #b5b5b5;
-    margin-top: 5px;
-    letter-spacing: 3px;
+.label { font-size: 1.1rem; color: #b5b5b5; margin-top: 5px; letter-spacing: 3px; }
+.divider { font-size: 4rem; color: rgba(255, 255, 255, 0.15); margin-bottom: 25px; }
+
+.matchup { font-size: 3.5rem; font-weight: 700; font-style: italic; margin-bottom: 5px; }
+.vs { color: #e61a1a; font-size: 2.2rem; margin: 0 15px; font-family: 'Permanent Marker', cursive; }
+.game-time { font-size: 2.2rem; color: #ff2b2b; letter-spacing: 4px; text-shadow: 0 0 15px rgba(255, 43, 43, 0.6); }
+.divider-red { color: #ffffff; margin: 0 10px; }
+
+/* Fullscreen Control Button Style */
+#fullscreen-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #888;
+    padding: 8px 14px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+#fullscreen-btn:hover {
+    background: #ff1a1a;
+    color: #fff;
+    border-color: #ff1a1a;
+    box-shadow: 0 0 15px #ff1a1a;
 }
 
-.divider {
-    font-size: 4rem;
-    color: rgba(255, 255, 255, 0.15);
-    font-family: Arial, sans-serif;
-    margin-bottom: 25px;
+/* Keyframe Animations */
+@keyframes driftSmoke {
+    0% { transform: translateX(0) scale(1); }
+    50% { transform: translateX(-25%) scale(1.1); }
+    100% { transform: translateX(0) scale(1); }
 }
 
-/* Matchup Text styling */
-.matchup {
-    font-size: 3.5rem;
-    font-weight: 700;
-    font-style: italic;
-    letter-spacing: 2px;
-    margin-bottom: 5px;
+@keyframes lightningStrike {
+    0%, 92%, 100% { opacity: 0; }
+    93% { opacity: 0.3; }
+    94% { opacity: 0.05; }
+    95% { opacity: 0.6; }
+    96% { opacity: 0; }
 }
 
-.vilonia {
-    color: #ffffff;
-    text-shadow: 2px 2px 0px #555;
-}
-.vs {
-    color: #e61a1a;
-    font-size: 2.2rem;
-    margin: 0 15px;
-    font-family: 'Permanent Marker', cursive;
-}
-.opponent {
-    color: #ffffff;
+@keyframes floatUpward {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-105vh) translateX(30px); opacity: 0; }
 }
 
-.game-time {
-    font-size: 2.2rem;
-    color: #ff2b2b;
-    letter-spacing: 4px;
-    font-weight: 700;
-    text-shadow: 0 0 15px rgba(255, 43, 43, 0.6);
-}
-
-.divider-red {
-    color: #ffffff;
-    margin: 0 10px;
-}
-
-/* Lightning strike keyframes */
-@keyframes lightning {
-    0%, 95%, 100% { opacity: 0; }
-    96% { opacity: 0.2; }
-    97% { opacity: 0.05; }
-    98% { opacity: 0.4; }
-    99% { opacity: 0; }
-}
-
-/* Clean up layouts for smartphone sizing */
 @media (max-width: 650px) {
     .brand-title { font-size: 2.8rem; }
     .time-block span { font-size: 3.5rem; }
     .label { font-size: 0.8rem; }
     .divider { font-size: 2.5rem; margin-bottom: 12px; }
     .matchup { font-size: 2rem; }
-    .vs { font-size: 1.5rem; }
     .game-time { font-size: 1.5rem; }
     .time-block { min-width: 60px; }
     .eagle-logo { max-width: 120px; }
+    #fullscreen-btn { display: none; } /* Hide on mobile phones */
 }
 
